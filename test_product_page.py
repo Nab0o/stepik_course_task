@@ -1,7 +1,10 @@
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 
+import time
 import pytest
+
 
 
 
@@ -51,6 +54,52 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 
 
 @pytest.mark.parametrize('linktask', ['http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'])
+def test_guest_cant_see_success_message(browser, linktask):
+    page = ProductPage(browser, linktask) 
+    page.open()  
+    page.should_not_be_success_message_wait()
+
+
+# @pytest.mark.registration
+# class TestRegisternewUserandLogin():
+
+        
+@pytest.mark.user_add_to_basket
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = 'https://selenium1py.pythonanywhere.com/en-gb/accounts/login/'
+        page = LoginPage(browser, link)
+        page.open()
+        #page.go_to_login_page
+        page.should_be_login_page()
+        email = str(time.time()) + "@fakemail.org"
+        password = str(time.time()) + "5!"  
+        page.register_new_user(email, password)
+        page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        linktask = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'    
+        page = ProductPage(browser, linktask) 
+        page.open()  
+        page.should_not_be_success_message_wait()
+        
+    def test_user_can_add_product_to_basket(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1'
+        page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        page.open()                      # открываем страницу
+        page.should_be_add_to_basket_button()
+        page.add_to_basket()
+        page.solve_quiz_and_get_code()
+        page.iteam_added_to_basket_check_name(page.iteam_name_find())
+        page.iteam_added_to_basket_check_price(page.iteam_price_find())    
+
+
+
+
+
+
+@pytest.mark.parametrize('linktask', ['http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'])
 @pytest.mark.skip
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, linktask): 
     page = ProductPage(browser, linktask) 
@@ -58,11 +107,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, 
     page.add_to_basket()
     page.should_not_be_success_message_now()
 
-@pytest.mark.parametrize('linktask', ['http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'])
-def test_guest_cant_see_success_message(browser, linktask):
-    page = ProductPage(browser, linktask) 
-    page.open()  
-    page.should_not_be_success_message_wait()
 
 @pytest.mark.parametrize('linktask', ['http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'])
 @pytest.mark.skip

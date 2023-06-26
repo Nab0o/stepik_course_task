@@ -10,6 +10,5 @@ class BasketPage(BasePage):
     
     def should_be_empty_basket(self):
         assert not self.is_element_present(*BasketPageLocators.basket_is_not_empty),\
-            "basket is not empty"
-        
+            "basket is not empty" 
 

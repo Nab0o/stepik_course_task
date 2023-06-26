@@ -12,7 +12,7 @@ class BasePage():
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
-        self.browser.implicitly_wait(timeout)
+        #self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
@@ -31,6 +31,10 @@ class BasePage():
         #return LoginPage(browser=self.browser, url=self.browser.current_url) 
         #from .login_page import LoginPage (перенести в шапку)
         #вариат перехода, второй вариант реализова в test_main_page
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+            " probably unauthorised user"
     
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
