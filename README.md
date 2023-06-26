@@ -1,6 +1,7 @@
 # stepik_course_task
 diploma project
-full instraction in russian to review project below
+
+full instruction in russian how to avoid environment mistakes and make a review for this project below
 
 # 1. Скачайте к себе проект, либо скачав и распаковав архив, либо склонировав репозитарий.
 # Просмотрите содержимое файла README.md, возможно, там будут какие-нибудь полезные комментарии для проверки.
@@ -16,7 +17,7 @@ full instraction in russian to review project below
 # pip install -r \path\to\requirements.txt
 # 7. Убедитесь, что путь к chromedriver.exe прописан в PATH, либо скопируйте этот файл в текущую папку Scripts из шага 4.
 # 8. Запустите тесты командой:
-# pytest -v --tb=line --language=en -m need_review \path\to\test_product_page.py
+# pytest -v --tb=line --language=en -m need_review \path\to\test_product_page.py       - в конце указать полный путь к файлу
 # 9. Проверьте, что все тесты прошли успешно.
 # 10. Если же тесты не запускаются, не спешите ставить 0 баллов и с чувством выполненного долга переходить к следующей рецензии.
 # Попробуйте сначала разобраться, в чем заключается ошибка. Возможно, дело в путях к файлам в импорте -- тогда попробуйте поставить / убрать точку в начале и / или добавить / удалить пустой файл __init__.py в корневой папке и / или подпапках.
