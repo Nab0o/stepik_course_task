@@ -1,6 +1,10 @@
 # stepik_course_task
 diploma project
 
+#обратите внимание, чтобы в директориях на уровни выше не было файла conftest.py, если в иерархии окажется этот файл, то интерпретатор будет работать неверно
+#если не запускается с командой из шаблона урока, то попробуйте использовать полный путь к файлу, пример:
+#pytest -v --tb=line --language=en -m need_review C:\Users\1\Desktop\check\test_product_page.py
+
 full instruction in russian how to avoid environment mistakes and make a review for this project below
 
 # 1. Скачайте к себе проект, либо скачав и распаковав архив, либо склонировав репозитарий.
