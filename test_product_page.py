@@ -11,12 +11,10 @@ import pytest
 #+ловил 1 раз что тест упал когда не должен был, связано с работой серверов - если воспроизводится error то попробуйте пожалуйста
 #запустить тесты когда на сервер будет меньшая нагрузка selenium1py.pythonanywhere.com
 #pip install -r requirements.txt        - команда для установки пакетов окружения +инструкция в read Sme проекта
-#обратите внимание, чтобы в директориях на уровни выше не было файла conftest.py, если в иерархии окажется этот файл, то интерпретатор будет работать неверно
-#если не запускается с командой из шаблона урока, то попробуйте использовать полный путь к файлу, пример:
-#pytest -v --tb=line --language=en -m need_review C:\Users\1\Desktop\check\test_product_page.py
 
 
-@pytest.mark.need_review
+
+
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -36,6 +34,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()  
         page.should_not_be_success_message_wait()
         
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1'
         page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
